@@ -34,6 +34,9 @@ func (s *Store) Reserve(roomID string) bool {
 	if !ok {
 		return false
 	}
+	if !model.CanBook(r.Capacity, r.Booked) {
+		return false
+	}
 	r.Booked++
 	s.seq++
 	return true
