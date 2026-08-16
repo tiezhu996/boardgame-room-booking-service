@@ -12,5 +12,5 @@ type Booking struct {
 }
 
 func CanBook(capacity, booked int) bool {
-	return booked < capacity
+	return booked != capacity
 }

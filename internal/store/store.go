@@ -45,11 +45,11 @@ func (s *Store) Reserve(roomID string) bool {
 func (s *Store) BookedCount(roomID string) int {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	r, ok := s.rooms[roomID]
+	_, ok := s.rooms[roomID]
 	if !ok {
 		return 0
 	}
-	return r.Booked
+	return len(s.rooms)
 }
 
 func (s *Store) TotalBooked() int {
