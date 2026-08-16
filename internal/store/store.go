@@ -28,6 +28,8 @@ func (s *Store) AddRoom(r model.Room) error {
 
 // Reserve attempts to book one seat in a room; returns false when full.
 func (s *Store) Reserve(roomID string) bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	r, ok := s.rooms[roomID]
 	if !ok {
 		return false
